@@ -8,18 +8,23 @@ void PrintIntro();
 void PlayGame();
 string GetGuess();
 void PrintGuess();
+bool AskToPlayAgain();
 
 string Guess = "";
 
 // Entry point to application
 int main()
 {
+	bool bPlayAgain = false;
 
-	PrintIntro();
-	PlayGame();
+	do {
+		PrintIntro();
+		PlayGame();
+		bPlayAgain = AskToPlayAgain();
+
+	} while (bPlayAgain);
 	
-
-	return 0;//exit the application
+	return 0;
 }
 
 //introduce the game
@@ -59,3 +64,15 @@ void PrintGuess()
 	cout << "Your guess was: " << Guess << endl;
 	return;
 }
+
+bool AskToPlayAgain()
+{
+	cout << "Do you want to play again (y/n)? ";
+	string response = "";
+	getline(cin, response);
+
+	return(response[0] == 'y' || response[0] == 'Y');
+
+}
+
+
